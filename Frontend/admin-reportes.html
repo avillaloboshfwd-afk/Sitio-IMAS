@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes Globales - IMAS</title>
+    <!-- New Dashboard Styles -->
+    <link rel="stylesheet" href="css/admin-reportes.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .header-actions { display: flex; align-items: center; gap: 1rem; margin-right: 1rem; }
+        .notif-container { position: relative; cursor: pointer; color: white; }
+        .notif-badge {
+            position: absolute; top: -5px; right: -5px; background: #ef4444; color: white;
+            border-radius: 50%; padding: 2px 5px; font-size: 0.6rem; display: none;
+        }
+        .notif-dropdown {
+            position: absolute; top: 35px; right: 0; width: 280px;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 8px; box-shadow: var(--shadow); display: none;
+            z-index: 1001; color: var(--text-main); overflow: hidden;
+        }
+        .notif-dropdown.active { display: block; }
+        .notif-header { padding: 10px; background: var(--bg-input); font-weight: bold; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.8rem; }
+        .notif-list { max-height: 300px; overflow-y: auto; }
+        .notif-item { padding: 10px; border-bottom: 1px solid var(--border-color); font-size: 0.8rem; cursor: pointer; }
+        .notif-item.unread { border-left: 3px solid var(--primary-blue); background: rgba(0,0,0,0.02); }
+        .notif-empty { padding: 20px; text-align: center; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <header class="entrance-slide-up">
+        <a href="admin-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 40px; margin-right: 15px;">
+                <h1 style="color: white; margin: 0;">Reportería IMAS</h1>
+            </div>
+        </a>
+        <div style="display: flex; align-items: center;">
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="notif-container" id="notif-trigger">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge" id="notif-count">0</span>
+                    <div class="notif-dropdown" id="notif-dropdown">
+                        <div class="notif-header">
+                            <span>Alertas Sistema</span>
+                            <a href="#" style="font-size: 0.7rem; color: var(--primary-blue); text-decoration: none;" onclick="markAllRead(event)">Limpiar</a>
+                        </div>
+                        <div id="notif-list" class="notif-list"></div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="admin-panel.html">Panel Admin</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Dashboard Header & Controls -->
+        <div class="dashboard-header entrance-fade-in delay-1">
+            <h2>Reportes Globales de Becas</h2>
+            <div class="actions-bar">
+                <button class="btn-filter active" id="btn-refresh"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                <button class="btn-filter">Último Mes</button>
+                <button class="btn-export" id="btn-export"><i class="fas fa-file-download"></i> Exportar PDF</button>
+            </div>
+        </div>
+
+        <!-- KPI Cards Grid -->
+        <div class="stats-grid">
+            <div class="stat-card blue entrance-slide-up delay-1">
+                <div class="stat-content">
+                    <h3>Total Postulaciones</h3>
+                    <div class="number" id="total-apps">0</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+            </div>
+
+            <div class="stat-card green entrance-slide-up delay-2">
+                <div class="stat-content">
+                    <h3>Becas Activas</h3>
+                    <div class="number" id="total-becas">0</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            </div>
+
+            <div class="stat-card orange entrance-slide-up delay-3">
+                <div class="stat-content">
+                    <h3>Pendientes Revisión</h3>
+                    <div class="number" id="total-pendientes">0</div>
+                </div>
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
+            </div>
+        </div>
+
+        <!-- Charts Layout -->
+        <div class="charts-grid entrance-slide-up delay-4">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-pie"></i> Estado de Solicitudes</h3>
+                </div>
+                <!-- Canvas for Chart.js -->
+                <div style="height: 300px; position: relative;">
+                    <canvas id="chartEstados"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3><i class="fas fa-chart-bar"></i> Distribución por Beca</h3>
+                </div>
+                <!-- Canvas for Chart.js -->
+                <div style="height: 300px; position: relative;">
+                    <canvas id="chartBecas"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Logic -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/admin-reportes.js"></script>
+</body>
+</html>

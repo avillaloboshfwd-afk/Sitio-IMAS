@@ -1,0 +1,91 @@
+/* CSS Variables for Theme Management */
+:root {
+    /* Light Theme (Default) */
+    --bg-body: #f4f7f6;
+    --bg-container: #ffffff;
+    --bg-header: #004481;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --bg-surface: #f8fafc;
+    --bg-input: #f0f2f5;
+    --bg-overlay: rgba(255, 255, 255, 0.9);
+    
+    --text-main: #333333;
+    --text-muted: #666666;
+    --text-header: #ffffff;
+    --text-on-primary: #ffffff;
+    
+    --primary-blue: #004481;
+    --secondary-blue: #002d56;
+    --accent-gold: #fbbf24;
+    --danger-red: #ef4444;
+    
+    --border-color: #e1e4e8;
+    --border-dim: #f1f5f9;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    --transition-speed: 0.3s;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+    --bg-body: #0f172a;
+    --bg-container: #1e293b;
+    --bg-header: #1e293b;
+    --bg-sidebar: #1e293b;
+    --bg-card: #334155;
+    --bg-surface: #1e293b;
+    --bg-input: #475569;
+    --bg-overlay: rgba(15, 23, 42, 0.9);
+    
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-header: #f8fafc;
+    --text-on-primary: #0f172a;
+    
+    --primary-blue: #38bdf8;
+    --secondary-blue: #0ea5e9;
+    --accent-gold: #fbbf24;
+    --danger-red: #f87171;
+    
+    --border-color: #334155;
+    --border-dim: #1e293b;
+    --shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Base reset using variables */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

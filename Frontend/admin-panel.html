@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - IMAS</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/admin-panel.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        /* Quick Notification Dropdown Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-right: 1.5rem;
+        }
+        .notif-container {
+            position: relative;
+            cursor: pointer;
+        }
+        .notif-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: none; /* Shown via JS */
+        }
+        .notif-dropdown {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 300px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1001;
+            overflow: hidden;
+        }
+        .notif-dropdown.active { display: block; }
+        .notif-header {
+            padding: 10px 15px;
+            background: var(--bg-input);
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        .notif-list {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .notif-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+        }
+        .notif-item:hover { background: rgba(0,0,0,0.05); }
+        .notif-item.unread { border-left: 4px solid var(--primary-blue); background: rgba(0,68,129,0.03); }
+        .notif-item h4 { margin: 0 0 5px 0; font-size: 0.9rem; }
+        .notif-item p { margin: 0; font-size: 0.8rem; color: var(--text-muted); }
+        .notif-item .date { font-size: 0.7rem; color: #999; margin-top: 5px; display: block; }
+        .notif-empty { padding: 30px; text-align: center; color: var(--text-muted); }
+    </style>
+</head>
+<body class="entrance-fade-in">
+
+    <header class="entrance-slide-up">
+        <a href="admin-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-brand">
+                <img src="img/logo-imas.png" alt="IMAS Logo">
+                <h1 style="color: white; margin: 0;">IMAS Portal</h1>
+            </div>
+        </a>
+        <div class="user-profile">
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="notif-container" id="notif-trigger">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge" id="notif-count">0</span>
+                    <div class="notif-dropdown" id="notif-dropdown">
+                        <div class="notif-header">
+                            <span>Notificaciones</span>
+                            <a href="#" style="font-size: 0.7rem; color: var(--primary-blue); text-decoration: none;" onclick="markAllRead(event)">Marcar todas como leídas</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty">No hay notificaciones nuevas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="user-info">
+                <span class="name" id="admin-name">Administrador IMAS</span>
+                <span class="role">Control Total</span>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="welcome-section entrance-slide-up delay-1">
+            <h2>Bienvenido, <span id="welcome-user">Admin</span></h2>
+            <p>Aquí tienes el resumen general del sistema de becas y las herramientas de gestión.</p>
+        </section>
+
+        <!-- KPI Cards -->
+        <div class="stats-grid entrance-slide-up delay-2">
+            <div class="stat-card">
+                <div class="stat-icon blue-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="value" id="total-becas">0</span>
+                    <span class="label">Becas Creadas</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon gold-icon">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="value" id="total-postulaciones">0</span>
+                    <span class="label">Solicitudes Recibidas</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="stat-data">
+                    <span class="value" id="total-evaluadores">0</span>
+                    <span class="label">Evaluadores Activos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Grid -->
+        <h3 class="actions-title entrance-slide-up delay-3"><i class="fas fa-th-large"></i> Herramientas de Gestión</h3>
+        <div class="action-grid entrance-slide-up delay-3">
+            <a href="admin-becas.html" class="action-card">
+                <i class="fas fa-edit"></i>
+                <h3>Gestionar Becas</h3>
+                <p>Crear, editar o cerrar convocatorias de becas estudiantiles.</p>
+            </a>
+
+            <a href="evaluador-panel.html" class="action-card">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Panel de Evaluación</h3>
+                <p>Revisar y procesar solicitudes de becas enviadas por los usuarios.</p>
+            </a>
+
+            <a href="admin-evaluadores.html" class="action-card">
+                <i class="fas fa-users-cog"></i>
+                <h3>Gestión de Evaluadores</h3>
+                <p>Administrar cuentas de acceso para el equipo de evaluación técnica.</p>
+            </a>
+
+            <a href="admin-reportes.html" class="action-card high-light">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Reportes y Estadísticas</h3>
+                <p>Ver métricas globales, gráficos de estado y descarga de reportes.</p>
+            </a>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/notifications.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fill User Info
+            const user = JSON.parse(localStorage.getItem('usuarioActivo'));
+            if (user) {
+                document.getElementById('admin-name').innerText = user.nombre;
+                document.getElementById('welcome-user').innerText = user.nombre.split(' ')[0];
+            }
+
+            // Logout Logic
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('usuarioActivo');
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Sesión Cerrada',
+                    text: '¡Hasta pronto!',
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = 'index.html';
+                });
+            });
+
+            // Load Real-time Stats
+            try {
+                const [becas, postulaciones, usuarios] = await Promise.all([
+                    api.get('becas'),
+                    api.get('postulaciones'),
+                    api.get('usuarios')
+                ]);
+
+                document.getElementById('total-becas').innerText = becas.length;
+                document.getElementById('total-postulaciones').innerText = postulaciones.length;
+                
+                const evaluadoresCount = usuarios.filter(u => u.role === 'evaluador').length;
+                document.getElementById('total-evaluadores').innerText = evaluadoresCount;
+
+            } catch (error) {
+                console.error("Error cargando estadísticas:", error);
+            }
+        });
+    </script>
+</body>
+</html>

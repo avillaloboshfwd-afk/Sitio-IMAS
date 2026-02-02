@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluar Solicitud - IMAS</title>
+    <link rel="stylesheet" href="css/evaluador-detalle.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <a href="evaluador-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 40px; margin-right: 15px;">
+                <h1 style="color: white; margin: 0;">Evaluación de Solicitud</h1>
+            </div>
+        </a>
+        <nav>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-right: 1.5rem;">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li><a href="evaluador-panel.html" style="color: white; text-decoration: none;"><i class="fas fa-arrow-left"></i> Volver al Panel</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="bulletin-card" id="detalle-container">
+            
+            <!-- Header creates the "Report Card" feel -->
+            <div class="bulletin-header">
+                <div class="student-info">
+                    <h2 id="student-name">Cargando...</h2>
+                    <div class="student-meta">
+                        <span><i class="fas fa-graduation-cap"></i> <span id="student-career">...</span></span>
+                        <span><i class="far fa-calendar-alt"></i> Solicitud: <span id="request-date">...</span></span>
+                    </div>
+                </div>
+                <div class="report-id">
+                    ID: <span id="request-id">...</span><br>
+                    CICLO 2026
+                </div>
+            </div>
+
+            <div class="bulletin-body">
+                <!-- Data Sections Injection Point -->
+                <div id="datos-postulante" class="data-section">
+                    <!-- Dynamic Data Content will go here -->
+                </div>
+
+                <!-- Evaluation Form -->
+                <div class="section-title">
+                    <i class="fas fa-clipboard-check"></i> Calificación del Evaluador
+                </div>
+
+                <div class="evaluation-panel">
+                    <div class="score-row">
+                        <span class="score-label">Situación Socioeconómica</span>
+                        <div class="score-input-wrapper">
+                             <input type="number" id="score-eco" class="score-input" min="0" max="40" value="0">
+                             <span class="max-score">/ 40</span>
+                        </div>
+                    </div>
+                    
+                    <div class="score-row">
+                        <span class="score-label">Rendimiento Académico</span>
+                        <div class="score-input-wrapper">
+                            <input type="number" id="score-acad" class="score-input" min="0" max="30" value="0">
+                            <span class="max-score">/ 30</span>
+                        </div>
+                    </div>
+                    
+                    <div class="score-row">
+                        <span class="score-label">Contexto Social y Familiar</span>
+                        <div class="score-input-wrapper">
+                            <input type="number" id="score-social" class="score-input" min="0" max="30" value="0">
+                            <span class="max-score">/ 30</span>
+                        </div>
+                    </div>
+
+                    <div class="total-score-box">
+                        <span class="total-label">Total Puntos</span>
+                        <span class="total-value"><span id="total-pts">0</span><span style="font-size: 1rem; opacity: 0.7;">/100</span></span>
+                    </div>
+
+                    <div class="observations-area">
+                        <label>Observaciones Finales</label>
+                        <textarea id="observaciones" rows="4" placeholder="Ingrese justificación detallada de la calificación..."></textarea>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-approve" id="btn-aprobar">
+                            <i class="fas fa-check-circle"></i> Aprobar Solicitud
+                        </button>
+                        <button class="btn btn-reject" id="btn-rechazar">
+                            <i class="fas fa-times-circle"></i> Rechazar Solicitud
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/evaluador-logic.js"></script>
+    <script>
+        // Simple script to handle real-time total calculation
+        const inputs = ['score-eco', 'score-acad', 'score-social'];
+        const totalDisplay = document.getElementById('total-pts');
+        
+        function calculateTotal() {
+            let total = 0;
+            inputs.forEach(id => {
+                const val = parseInt(document.getElementById(id).value) || 0;
+                total += val;
+            });
+            totalDisplay.textContent = total;
+            
+            // Visual feedback on total
+            if(total >= 80) totalDisplay.parentElement.style.color = '#4ade80'; // Green
+            else if(total >= 60) totalDisplay.parentElement.style.color = '#fbbf24'; // Yellow
+            else totalDisplay.parentElement.style.color = '#ffffff'; // White default
+        }
+
+        inputs.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('input', calculateTotal);
+        });
+    </script>
+</body>
+</html>

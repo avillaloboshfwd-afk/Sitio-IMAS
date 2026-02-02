@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Evaluación - IMAS</title>
+    <link rel="stylesheet" href="css/evaluador-panel.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .header-actions { display: flex; align-items: center; gap: 1rem; margin-right: 1rem; }
+        .notif-container { position: relative; cursor: pointer; color: white; }
+        .notif-badge {
+            position: absolute;
+            top: -5px; right: -5px;
+            background: #ef4444; color: white;
+            border-radius: 50%; padding: 2px 5px; font-size: 0.6rem;
+            display: none;
+        }
+        .notif-dropdown {
+            position: absolute; top: 35px; right: 0; width: 280px;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: 8px; box-shadow: var(--shadow); display: none;
+            z-index: 1001; color: var(--text-main); overflow: hidden;
+        }
+        .notif-dropdown.active { display: block; }
+        .notif-header { padding: 10px; background: var(--bg-input); font-weight: bold; font-size: 0.8rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; }
+        .notif-list { max-height: 300px; overflow-y: auto; }
+        .notif-item { padding: 10px; border-bottom: 1px solid var(--border-color); font-size: 0.8rem; cursor: pointer; }
+        .notif-item.unread { border-left: 3px solid var(--primary-blue); background: rgba(0,0,0,0.02); }
+        .notif-item h4 { margin: 0 0 3px 0; }
+        .notif-item p { margin: 0; color: var(--text-muted); }
+        .notif-empty { padding: 20px; text-align: center; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <header class="entrance-slide-up">
+        <a href="evaluador-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 40px; margin-right: 15px;">
+                <h1 style="color: white; margin: 0;">Panel Administrativo - IMAS</h1>
+            </div>
+        </a>
+        <div style="display: flex; align-items: center;">
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="notif-container" id="notif-trigger">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge" id="notif-count">0</span>
+                    <div class="notif-dropdown" id="notif-dropdown">
+                        <div class="notif-header">
+                            <span>Notificaciones</span>
+                            <a href="#" style="font-size: 0.7rem; color: var(--primary-blue); text-decoration: none;" onclick="markAllRead(event)">Limpiar</a>
+                        </div>
+                        <div id="notif-list" class="notif-list"></div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><span><i class="fas fa-user-circle"></i> Hola, Evaluador</span></li>
+                    <li><a href="#" id="logoutBtn" style="color: var(--secondary-blue); text-decoration: none; border: 2px solid var(--secondary-blue); padding: 0.5rem 1rem; border-radius: 4px;"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="entrance-fade-in delay-1">
+        <div class="filter-container entrance-slide-up delay-2">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-list"></i> Todas</button>
+            <button class="filter-btn" data-filter="Pendiente"><i class="far fa-clock"></i> Pendientes</button>
+            <button class="filter-btn" data-filter="Aprobada"><i class="fas fa-check"></i> Aprobadas</button>
+            <button class="filter-btn" data-filter="Rechazada"><i class="fas fa-times"></i> Rechazadas</button>
+        </div>
+
+        <section id="lista-pendientes" class="requests-grid entrance-slide-up delay-3">
+            <!-- Se llena dinámicamente con JS -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Instituto Mixto de Ayuda Social - Sistema de Becas</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/evaluador-logic.js"></script>
+    <script>
+        // Logout script
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.removeItem("usuarioActivo");
+            Swal.fire({
+                icon: 'info',
+                title: 'Sesión Finalizada',
+                text: 'Has salido del panel de evaluación.',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "index.html"; 
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Becas</title>
+
+    <!-- Estilos generales -->
+     
+    <link rel="stylesheet" href="css/estudiante-catalogo.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-right: 1.5rem;
+        }
+        .notif-container { position: relative; cursor: pointer; color: var(--text-header); }
+        .notif-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 0.65rem;
+            font-weight: bold;
+            display: none;
+        }
+        .notif-dropdown {
+            position: absolute;
+            top: 35px;
+            right: 0;
+            width: 280px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 1001;
+            color: var(--text-main);
+            overflow: hidden;
+        }
+        .notif-dropdown.active { display: block; }
+        .notif-header {
+            padding: 10px;
+            background: var(--bg-input);
+            font-weight: bold;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        .notif-list { max-height: 300px; overflow-y: auto; }
+        .notif-item { padding: 10px; border-bottom: 1px solid var(--border-color); transition: background 0.2s; cursor: pointer; }
+        .notif-item:hover { background: rgba(0,0,0,0.05); }
+        .notif-item.unread { border-left: 3px solid var(--primary-blue); background: rgba(0,68,129,0.02); }
+        .notif-item h4 { margin: 0 0 3px 0; font-size: 0.85rem; }
+        .notif-item p { margin: 0; font-size: 0.75rem; color: var(--text-muted); }
+        .notif-item .date { font-size: 0.65rem; color: #999; margin-top: 3px; display: block; }
+        .notif-empty { padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Promo Banner -->
+
+    <div class="promo-banner">
+        ¡Convocatorias 2026 abiertas! - Aplica hoy mismo
+    </div>
+
+    <!-- ENCABEZADO -->
+
+    <header class="entrance-slide-up">
+        <a href="index.html" class="logo-link" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 50px;">
+                <p style="color: white; margin: 0; font-weight: bold;">Becas & Ayudas</p>
+            </div>
+        </a>
+        <div style="display: flex; align-items: center;">
+            <div class="header-actions">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="notif-container" id="notif-trigger">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge" id="notif-count">0</span>
+                    <div class="notif-dropdown" id="notif-dropdown">
+                        <div class="notif-header">
+                            <span>Notificaciones</span>
+                            <a href="#" style="font-size: 0.65rem; color: var(--primary-blue); text-decoration: none;" onclick="markAllRead(event)">Ver todo</a>
+                        </div>
+                        <div class="notif-list" id="notif-list">
+                            <div class="notif-empty">Cargando...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="estudiante-historial.html" id="verHistorialBtn">Mis Postulaciones</a></li>
+                    <li><a href="index.html" id="logoutBtn">Salir</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+
+    <div class="hero entrance-fade-in delay-1">
+        <h2>Invierte en tu Futuro</h2>
+        <p>Explora nuestras becas disponibles y da el siguiente paso en tu carrera profesional.</p>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+
+    <main class="entrance-slide-up delay-2">
+        <!-- SECCIÓN: BECAS ABIERTAS -->
+        <section id="becas-abiertas">
+            <h2>Becas Abiertas</h2>
+            <div id="lista-becas-abiertas" class="catalog-grid">
+                <!-- Se llena con JS -->
+                <div id="loading-spinner" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin fa-3x" style="color: var(--primary-blue);"></i>
+                    <p>Cargando becas...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: BECAS CERRADAS -->
+        <section id="becas-cerradas">
+            <h2>Becas Cerradas</h2>
+            <div id="lista-becas-cerradas" class="catalog-grid">
+                <!-- Se llena con JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="imas-footer">
+        <div class="footer-top">
+            <div class="footer-section contact-info">
+                <h3>Contáctenos</h3>
+                <div class="divider"></div>
+                
+                <h4>Servicio gratuito de atención a personas usuarias</h4>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> Linea telefónica: 800-000-4627</li>
+                    <li><i class="far fa-clock"></i> Horario de atención: De lunes a viernes, de 7:00 a.m. a 4:00 p.m.</li>
+                </ul>
+
+                <h4>Central telefónica</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> (506) 2202-4000</li>
+                </ul>
+                
+                <a href="#" class="btn-directorio">Directorio telefónico institucional <i class="fas fa-download"></i></a>
+            </div>
+
+            <div class="footer-section locations">
+                <h4>Oficinas</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Oficinas centrales: Calle 29, avenida 2 y 8, De KFC La California 75 sur, San José, San Pedro, Costa Rica</li>
+                    <li><i class="far fa-clock"></i> Horario de atención: de 7:00 a.m a 4:00 p.m.</li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar una oficina cercana">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-middle">
+            <div class="accessibility-icons">
+                <i class="fas fa-wheelchair"></i>
+                <i class="fas fa-female"></i>
+                <i class="fas fa-blind"></i>
+            </div>
+            <p>Personas con discapacidad, mujeres en estado de embarazo o personas adultas mayores, pueden comunicarse a la línea gratuita: <strong>800 000 4627</strong> para solicitar atención.</p>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="accessibility-widget">
+                 <i class="fas fa-universal-access"></i>
+            </div>
+            <p>Todos los derechos reservados © Instituto Mixto de Ayuda Social 2026. Fecha de Última Modificación en el Portal: 30/01/2026</p>
+            <div class="logo-gov">
+                <!-- Placeholder for government logo if needed -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts externos -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/estudiante-catalogo.js"></script>
+    <script>
+        document.getElementById('verHistorialBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'estudiante-historial.html';
+        });
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('usuarioActivo');
+            Swal.fire({
+                icon: 'info',
+                title: 'Sesión Finalizada',
+                text: 'Has salido del sistema de becas.',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html>

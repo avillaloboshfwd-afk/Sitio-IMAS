@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postulación - Paso a Paso</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="css/estudiante-postulacion.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- ENCABEZADO MINIMALISTA -->
+        <a href="estudiante-catalogo.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" class="logo-imas">
+                <h1 style="color: white; margin: 0;">Nueva Solicitud</h1>
+            </div>
+        </a>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: var(--text-header); padding: 5px; font-size: 1.1rem;">
+                <i class="fas fa-moon"></i>
+            </button>
+            <nav>
+                <a href="index.html" class="btn-cancelar-top">Salir</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="entrance-slide-up delay-1">
+        <div class="form-container-main">
+            
+            <form id="formPostulacion">
+                
+                <!-- PASO 1: DATOS PERSONALES -->
+                <div class="step active">
+                    <div class="step-header">
+                        <h2><i class="fas fa-user-circle"></i> ¿Quién eres?</h2>
+                        <p>Comencemos con tus datos básicos.</p>
+                    </div>
+
+                    <label for="nombreCompleto">Nombre Completo</label>
+                    <input type="text" id="nombreCompleto" required placeholder="Tu nombre completo aquí">
+
+                    <label for="cedula">Cédula de Identidad (9 dígitos)</label>
+                    <input type="text" id="cedula" required placeholder="Ej: 1-0000-0000" inputmode="numeric" pattern="\d{9}" maxlength="9" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" min="1" max="120" required placeholder="Ej: 20" oninput="if(this.value.length > 3) this.value = this.value.slice(0, 3);">
+
+                    <div class="step-actions">
+                        <button type="button" class="btn btn-next" onclick="nextStep()">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- PASO 2: BECA -->
+                <div class="step">
+                    <div class="step-header">
+                        <h2><i class="fas fa-graduation-cap"></i> Tu Meta Académica</h2>
+                        <p>¿Qué te gustaría estudiar?</p>
+                    </div>
+
+                    <label for="beca">Carrera o Beca de Interés</label>
+                    <select id="beca" required>
+                        <option value="">-- Seleccione una opción --</option>
+                        <option value="1">Ingeniería en Sistemas</option>
+                        <option value="2">Educación Primaria</option>
+                        <option value="3">Administración de Empresas</option>
+                        <option value="4">Contabilidad y Finanzas</option>
+                        <option value="5">Enfermería</option>
+                        <option value="8">Ingeniería Industrial</option>
+                        <option value="9">Educación Especial</option>
+                    </select>
+
+                    <label for="nivelEducativo">Nivel Educativo Actual</label>
+                    <select id="nivelEducativo" required>
+                        <option value="">-- Seleccione --</option>
+                        <option value="secundaria">Secundaria</option>
+                        <option value="tecnico">Técnico</option>
+                        <option value="universitario">Universitario</option>
+                    </select>
+
+                    <div class="step-actions">
+                        <button type="button" class="btn btn-prev" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep()">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- PASO 3: SOCIOECONÓMICO -->
+                <div class="step">
+                    <div class="step-header">
+                        <h2><i class="fas fa-home"></i> Tu Hogar</h2>
+                        <p>Información socioeconómica para la evaluación.</p>
+                    </div>
+
+                    <label for="ingresos">Ingresos Mensuales del Hogar</label>
+                    <input type="text" id="ingresos" required placeholder="₡0" oninput="const dim = this.value.replace(/[^0-9]/g, '').slice(0, 9); this.value = dim ? '₡' + dim : '';">
+
+                    <label for="personasHogar">Personas en el Hogar</label>
+                    <input type="number" id="personasHogar" min="1" max="30" required placeholder="Ej. 4" oninput="if(this.value.length > 2) this.value = this.value.slice(0, 2); if(parseInt(this.value) > 30) this.value = 30;">
+
+                    <div class="step-actions">
+                        <button type="button" class="btn btn-prev" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn btn-next" onclick="nextStep()">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- PASO 4: MOTIVACIÓN Y ENVÍO -->
+                <div class="step">
+                    <div class="step-header">
+                        <h2><i class="fas fa-pen-fancy"></i> Cuéntanos más</h2>
+                        <p>¿Por qué deberías recibir esta beca?</p>
+                    </div>
+
+                    <label for="motivo">Justificación</label>
+                    <textarea id="motivo" rows="6" required placeholder="Explica brevemente tu situación y tus metas..."></textarea>
+
+                    <div class="step-actions">
+                        <button type="button" class="btn btn-prev" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="submit" class="btn btn-submit">Enviar Solicitud <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/estudiante-postulacion.js"></script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nombre": "Juan",
+      "email": "juan@email.com"
+    },
+    {
+      "id": "25c7",
+      "nombre": "Tayro Arce",
+      "email": "autotaskai.cr@gmail.com"
+    },
+    {
+      "id": "b5b8",
+      "nombre": "TAAAA",
+      "email": "holanda@java.com"
+    },
+    {
+      "id": "a372",
+      "nombre": "kjkkjj",
+      "email": "michaeldesanta@gmail.com"
+    },
+    {
+      "id": "cf0b",
+      "nombre": "Hola",
+      "email": "tarcebfwd@gmail.com"
+    },
+    {
+      "id": "5e47",
+      "nombre": "Tayro Arce",
+      "email": "mikasa@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": "bf6d",
+      "nombre": "Ashley Morera",
+      "email": "ash@java.com",
+      "password": "123"
+    },
+    {
+      "id": "8b82",
+      "nombre": "Tayro Arce",
+      "email": "miku@hatsune.com",
+      "password": "12"
+    },
+    {
+      "id": "2325",
+      "nombre": "TATA",
+      "email": "holanda@gmail.com",
+      "password": "LaScarDeGTA04?"
+    },
+    {
+      "id": "evaluador1",
+      "nombre": "Evaluador Principal",
+      "email": "evaluador@imas.com",
+      "password": "admin",
+      "role": "evaluador"
+    },
+    {
+      "id": "admin1",
+      "nombre": "Administrador General",
+      "email": "admin@imas.com",
+      "password": "admin",
+      "role": "admin"
+    },
+    {
+      "id": "2b7a",
+      "nombre": "Sarai",
+      "email": "sarai@fdw.com",
+      "password": "LAKIKI88op01??",
+      "role": "postulante"
+    },
+    {
+      "id": "06e5",
+      "nombre": "Carlos",
+      "email": "carlos@gmail.com",
+      "password": "13",
+      "role": "postulante"
+    },
+    {
+      "id": "f998",
+      "nombre": "TA",
+      "email": "lala@lolo.com",
+      "password": "12",
+      "role": "postulante"
+    },
+    {
+      "id": "5432",
+      "nombre": "Andre",
+      "email": "andres@imas.com",
+      "password": "Imas2026?",
+      "role": "evaluador",
+      "fechaRegistro": "2026-02-02T17:02:39.209Z",
+      "status": "active"
+    },
+    {
+      "id": "efe0",
+      "nombre": "Steven",
+      "email": "steven@profe.com",
+      "password": "Franchesco12?",
+      "role": "postulante"
+    }
+  ],
+  "becas": [
+    {
+      "id": "1",
+      "nombre": "Ingeniería en Sistemas",
+      "descripcion": "Apoyo económico dirigido a estudiantes de la carrera de Ingeniería en Sistemas que presenten limitaciones socioeconómicas y buen rendimiento académico.",
+      "requisitos": "• Estar matriculado en Ingeniería en Sistemas.\n• Promedio ponderado mayor a 8.5.\n• Demostrar condición de pobreza extrema o básica.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "2",
+      "nombre": "Educación Primaria",
+      "descripcion": "Beca social orientada a estudiantes de educación que deseen continuar su formación profesional.",
+      "requisitos": "• Estudiante activo de Educación Primaria.\n• Carta de recomendación de un profesor.\n• Hoja de delincuencia al día.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "3",
+      "nombre": "Administración de Empresas",
+      "descripcion": "Apoyo económico para estudiantes que demuestren liderazgo, compromiso académico y necesidad socioeconómica.",
+      "requisitos": "• Cursar Administración de Empresas.\n• Haber aprobado al menos 10 materias.\n• Participación en grupos estudiantiles.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "4",
+      "nombre": "Contabilidad y Finanzas",
+      "descripcion": "Dirigida a estudiantes que requieran apoyo económico para continuar sus estudios en el área financiera y contable.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "5",
+      "nombre": "Enfermería",
+      "descripcion": "Beca social para estudiantes del área de la salud con vocación de servicio y recursos económicos limitados.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "6",
+      "nombre": "Trabajo Social",
+      "descripcion": "Convocatoria cerrada. Esta beca estuvo dirigida a estudiantes comprometidos con el desarrollo social y comunitario.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "7",
+      "nombre": "Psicología",
+      "descripcion": "Esta convocatoria finalizó. Estuvo orientada a estudiantes del área de salud mental con alto compromiso social.",
+      "estado": "Cerrada",
+      "imagen": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "8",
+      "nombre": "Ingeniería Industrial",
+      "descripcion": "Beca para estudiantes de Ingeniería Industrial.",
+      "estado": "Cerrada",
+      "imagen": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop",
+      "requisitos": ""
+    },
+    {
+      "id": "9",
+      "nombre": "Educación Especial",
+      "descripcion": "Beca para estudiantes de Educación Especial.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "1769806737292",
+      "nombre": "Gastronomía",
+      "descripcion": "Beca para estudios superiores en artes culinarias y gestión de alimentos.",
+      "requisitos": "• Pasión por la cocina.\n• Portafolio de platos básicos.",
+      "estado": "Abierta",
+      "imagen": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop"
+    },
+    {
+      "id": "1770051719247",
+      "nombre": "Tayro Arce",
+      "descripcion": "MISANDSAIDBSAUSBFDSOFL",
+      "requisitos": "- Ser de Heredia\n- Disponer 10 horas a la semana",
+      "estado": "Cerrada",
+      "imagen": ""
+    },
+    {
+      "id": "1770054068401",
+      "nombre": "BECA RANDY",
+      "descripcion": "nkclsdcnñdskvds",
+      "requisitos": "",
+      "estado": "Abierta",
+      "imagen": ""
+    }
+  ],
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Cerdito de barro",
+      "precio": 3500,
+      "stock": 10,
+      "imagen": "img/producto1.jpg"
+    }
+  ],
+  "notificaciones": [],
+  "postulaciones": [
+    {
+      "id": "1769791098373",
+      "usuarioEmail": "mikasa@gmail.com",
+      "usuarioNombre": "Tayro Arce",
+      "datosPersonales": {
+        "nombreCompleto": "Tayro Arce",
+        "cedula": "6051132321432",
+        "edad": 92
+      },
+      "informacionAcademica": {
+        "becaId": "9",
+        "becaNombre": "Educación Especial",
+        "nivelEducativo": "secundaria"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": 3021000,
+        "personasHogar": 3
+      },
+      "motivo": "balcñdlfd",
+      "estado": "Rechazada",
+      "fechaPostulacion": "30/1/2026, 10:38:18 a. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "safsd",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "30/1/2026, 2:00:02 p. m."
+      }
+    },
+    {
+      "id": "1769791584058",
+      "usuarioEmail": "ash@java.com",
+      "usuarioNombre": "Ashley Morera",
+      "datosPersonales": {
+        "nombreCompleto": "Ashley Morera Soto",
+        "cedula": "6 0504 0271",
+        "edad": 30
+      },
+      "informacionAcademica": {
+        "becaId": "3",
+        "becaNombre": "Administración de Empresas",
+        "nivelEducativo": "secundaria"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": 10000,
+        "personasHogar": 10
+      },
+      "motivo": "Ocupo comer",
+      "estado": "Aprobada",
+      "fechaPostulacion": "30/1/2026, 10:46:24 a. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "30/1/2026, 2:42:18 p. m."
+      }
+    },
+    {
+      "id": "1769791767931",
+      "usuarioEmail": "ash@java.com",
+      "usuarioNombre": "Ashley Morera",
+      "datosPersonales": {
+        "nombreCompleto": "Nelson",
+        "cedula": "6051132321432",
+        "edad": 19
+      },
+      "informacionAcademica": {
+        "becaId": "8",
+        "becaNombre": "Ingeniería Industrial",
+        "nivelEducativo": "secundaria"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": 200000,
+        "personasHogar": 5
+      },
+      "motivo": "cbsdbfsdñ",
+      "estado": "Aprobada",
+      "fechaPostulacion": "30/1/2026, 10:49:27 a. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 25,
+          "academico": 30,
+          "social": 15
+        },
+        "puntajeTotal": 70,
+        "observaciones": "Si papi, tiene la beca",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "2/2/2026, 11:44:13 a. m."
+      }
+    },
+    {
+      "id": "1769792335154",
+      "usuarioEmail": "ash@java.com",
+      "usuarioNombre": "Ashley Morera",
+      "datosPersonales": {
+        "nombreCompleto": "Tayro Arce",
+        "cedula": "6051132321432",
+        "edad": 15
+      },
+      "informacionAcademica": {
+        "becaId": "3",
+        "becaNombre": "Administración de Empresas",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": 6789999,
+        "personasHogar": 1234567888
+      },
+      "motivo": "jvñlklvlku",
+      "estado": "Pendiente",
+      "fechaPostulacion": "30/1/2026, 10:58:55 a. m."
+    },
+    {
+      "id": "1769803649834",
+      "usuarioEmail": "miku@hatsune.com",
+      "usuarioNombre": "Tayro Arce",
+      "datosPersonales": {
+        "nombreCompleto": "Tayro Arce",
+        "cedula": "605130135",
+        "edad": 100
+      },
+      "informacionAcademica": {
+        "becaId": "3",
+        "becaNombre": "Administración de Empresas",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": 200000,
+        "personasHogar": 3
+      },
+      "motivo": "LA necesitpd asj fñdofnsdñf sdpf jsdbvsdñlfjewññdslkvbdsblvsdv",
+      "estado": "Rechazada",
+      "fechaPostulacion": "30/1/2026, 2:07:29 p. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "30/1/2026, 2:09:14 p. m."
+      }
+    },
+    {
+      "id": "1770043752151",
+      "usuarioEmail": "miku@hatsune.com",
+      "usuarioNombre": "Tayro Arce",
+      "datosPersonales": {
+        "nombreCompleto": "Ashley Morera Soto",
+        "cedula": "605130135",
+        "edad": 19
+      },
+      "informacionAcademica": {
+        "becaId": "4",
+        "becaNombre": "Contabilidad y Finanzas",
+        "nivelEducativo": "secundaria"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡2000000",
+        "personasHogar": 6
+      },
+      "motivo": "Me gustan las papas fritas del mac cuando están recien hechas y todas caliente que ricoooooooooooooooooooooooooooooooooooooooooooo\n",
+      "estado": "Aprobada",
+      "fechaPostulacion": "2/2/2026, 8:49:12 a. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "2/2/2026, 11:03:37 a. m."
+      }
+    },
+    {
+      "id": "1770044504634",
+      "usuarioEmail": "miku@hatsune.com",
+      "usuarioNombre": "Tayro Arce",
+      "datosPersonales": {
+        "nombreCompleto": "Tayro Arce",
+        "cedula": "605130135",
+        "edad": 19
+      },
+      "informacionAcademica": {
+        "becaId": "8",
+        "becaNombre": "Ingeniería Industrial",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡2000000",
+        "personasHogar": 5
+      },
+      "motivo": "nooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+      "estado": "Pendiente",
+      "fechaPostulacion": "2/2/2026, 9:01:44 a. m."
+    },
+    {
+      "id": "1770045986721",
+      "usuarioEmail": "miku@hatsune.com",
+      "usuarioNombre": "Tayro Arce",
+      "datosPersonales": {
+        "nombreCompleto": "ghjdhdt",
+        "cedula": "564365345",
+        "edad": 12
+      },
+      "informacionAcademica": {
+        "becaId": "9",
+        "becaNombre": "Educación Especial",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡324342342",
+        "personasHogar": 30
+      },
+      "motivo": "234134f2323412f3d2d24",
+      "estado": "Rechazada",
+      "fechaPostulacion": "2/2/2026, 9:26:26 a. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "2/2/2026, 11:45:35 a. m."
+      }
+    },
+    {
+      "id": "1770054609473",
+      "usuarioEmail": "steven@profe.com",
+      "usuarioNombre": "Steven",
+      "datosPersonales": {
+        "nombreCompleto": "Steven Salas",
+        "cedula": "605130135",
+        "edad": 15
+      },
+      "informacionAcademica": {
+        "becaId": "5",
+        "becaNombre": "Enfermería",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡200000",
+        "ingresosNumerico": 200000,
+        "personasHogar": 5
+      },
+      "motivo": "dsvdipafkjduifkwdbflwdbfiasufwoifñsaipfiwdpmcmia",
+      "estado": "Apta",
+      "fechaPostulacion": "2/2/2026, 11:50:09 a. m."
+    },
+    {
+      "id": "1770059512192",
+      "usuarioEmail": "steven@profe.com",
+      "usuarioNombre": "Steven",
+      "datosPersonales": {
+        "nombreCompleto": "Tayro Arce",
+        "cedula": "605130123",
+        "edad": 92
+      },
+      "informacionAcademica": {
+        "becaId": "1770054068401",
+        "becaNombre": "BECA RANDY",
+        "nivelEducativo": "tecnico"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡2000000",
+        "ingresosNumerico": 2000000,
+        "personasHogar": 8
+      },
+      "motivo": "ljbpkbgñfabdkavinisoñvanpvspavnpavnfaojgfn",
+      "estado": "No apta",
+      "fechaPostulacion": "2/2/2026, 1:11:52 p. m."
+    },
+    {
+      "id": "1770059598698",
+      "usuarioEmail": "steven@profe.com",
+      "usuarioNombre": "Steven",
+      "datosPersonales": {
+        "nombreCompleto": "Ashley Morera Soto",
+        "cedula": "605130134",
+        "edad": 91
+      },
+      "informacionAcademica": {
+        "becaId": "1",
+        "becaNombre": "Ingeniería en Sistemas",
+        "nivelEducativo": "universitario"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡2000000",
+        "ingresosNumerico": 2000000,
+        "personasHogar": 6
+      },
+      "motivo": "n{zñj vañsklvn flñvkasnvpjsdpñaskl vfd",
+      "estado": "No apta",
+      "fechaPostulacion": "2/2/2026, 1:13:18 p. m."
+    }
+  ]
+}

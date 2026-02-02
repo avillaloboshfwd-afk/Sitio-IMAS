@@ -1,0 +1,231 @@
+/* becas-premium.css - Multi-Step Blue/Yellow Theme */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-blue: #004481; 
+    --secondary-blue: #002a5c;
+    --accent-yellow: #FFD700; 
+    --accent-yellow-hover: #ffea00;
+    --text-white: #ffffff;
+    --text-dark: var(--text-main);
+    --glass-bg: var(--bg-container);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* User requested blue background */
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* Progress Bar */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 200;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent-yellow);
+    width: 0%;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+header {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-imas {
+    height: 40px;
+    border-radius: 4px;
+    background: rgb(255, 255, 255); /* contrast for logo if transparent */
+    padding: 2px;
+}
+
+.btn-cancelar-top {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.btn-cancelar-top:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--text-white);
+}
+
+/* Main Container */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center Vertically */
+    padding: 20px;
+}
+
+.form-container-main {
+    background: var(--glass-bg);
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden; /* For animations */
+    min-height: 500px; /* Consistent height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Step Styles */
+.step {
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    /* Initial state for entering */
+    transform: translateX(20px);
+}
+
+.step.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.step-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.step-header h2 {
+    color: var(--primary-blue);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.step-header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Inputs */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    transition: all 0.3s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--primary-blue);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(0, 68, 129, 0.1);
+    outline: none;
+}
+
+/* Buttons */
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto; /* Push to bottom */
+    padding-top: 20px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px; /* Rounded pill shape */
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-next, .btn-submit {
+    background: var(--accent-yellow);
+    color: var(--primary-blue); /* High contrast */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    margin-left: auto; /* Push to right if alone */
+}
+
+.btn-next:hover, .btn-submit:hover {
+    background: var(--accent-yellow-hover);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-prev {
+    background: transparent;
+    color: var(--text-muted);
+    border: 2px solid var(--border-color);
+}
+
+.btn-prev:hover {
+    background: #f1f1f1;
+    color: var(--text-dark);
+}
+
+/* Animations */
+.slide-out-left {
+    transform: translateX(-50px) !important;
+    opacity: 0 !important;
+}
+
+.slide-out-right {
+    transform: translateX(50px) !important;
+    opacity: 0 !important;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Sistema de Becas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="register-bg"></div>
+    <div class="register-wrapper">
+        <div class="register-card">
+            <div class="login-header">
+                <a href="index.html">
+                    <img src="img/logo-imas.png" alt="IMAS Logo" style="width: 120px; margin-bottom: 10px;">
+                </a>
+                <h3>Crear Cuenta</h3>
+                <p>Únete a nuestra plataforma de gestión de becas.</p>
+            </div>
+            <form id="register-form-page">
+                <div class="input-group">
+                    <label for="nombre" class="sr-only">Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Nombre Completo" required>
+                </div>
+                <div class="input-group">
+                    <label for="email" class="sr-only">Correo Electrónico</label>
+                    <input type="email" id="email" placeholder="nombre@correo.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="password" class="sr-only">Contraseña</label>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Registrarse</button>
+            </form>
+            <div class="register-footer">
+                <p>¿Ya tienes cuenta? <a href="index.html">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

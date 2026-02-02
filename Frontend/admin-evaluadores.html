@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Evaluadores - IMAS</title>
+    <link rel="stylesheet" href="css/admin-evaluadores.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <a href="admin-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 40px; margin-right: 15px;">
+                <h1 style="color: white; margin: 0;">Gestión de Evaluadores - IMAS</h1>
+            </div>
+        </a>
+        <nav>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-right: 1rem;">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <ul>
+                    <li><a href="admin-panel.html">Panel Admin</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Formulario Nuevo Evaluador -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-user-plus"></i> Registrar Nuevo Evaluador</h2>
+            </div>
+            <form id="form-evaluador">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" required placeholder="Ej. Ana García">
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" id="email" required placeholder="Ej. ana@imas.com">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña Temporal</label>
+                    <input type="text" id="password" value="imas2026" required>
+                </div>
+                <button type="submit" class="btn-primary">Registrar Evaluador</button>
+            </form>
+        </section>
+
+        <!-- Lista de Evaluadores -->
+        <section class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-users"></i> Evaluadores Activos</h2>
+            </div>
+            <div id="lista-evaluadores">
+                <!-- Se llena con JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/admin-evaluadores.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Becas - IMAS</title>
+    <link rel="stylesheet" href="css/admin-becas.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <a href="admin-panel.html" style="text-decoration: none; display: flex; align-items: center; gap: 15px;">
+            <div class="logo-container">
+                <img src="img/logo-imas.png" alt="IMAS Logo" style="height: 40px; margin-right: 15px;">
+                <h1 style="color: white; margin: 0;">Gestión de Becas - IMAS</h1>
+            </div>
+        </a>
+        <nav>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-right: 1rem;">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar Tema" style="color: white; background: none; border: none; cursor: pointer;">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <ul>
+                    <li><a href="admin-panel.html">Panel Admin</a></li>
+                    <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="admin-header">
+            <h2><i class="fas fa-list"></i> Listado de Becas</h2>
+            <button class="btn btn-success" id="btn-nueva-beca"><i class="fas fa-plus"></i> Nueva Beca</button>
+        </div>
+
+        <div class="table-container">
+            <table class="becas-table">
+                <thead>
+                    <tr>
+                        <th width="20%">Nombre</th>
+                        <th width="40%">Descripción</th>
+                        <th width="15%">Estado</th>
+                        <th width="25%">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-becas-body">
+                    <!-- Data dinámica -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Modal Formulario -->
+    <div class="modal" id="modal-beca">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 id="modal-titulo">Nueva Beca</h2>
+            <form id="form-beca">
+                <input type="hidden" id="beca-id">
+                <div class="form-group">
+                    <label>Nombre de la Beca</label>
+                    <input type="text" id="nombre" required placeholder="Ej. Beca Avancemos">
+                </div>
+                <div class="form-group">
+                    <label>Descripción detallada</label>
+                    <textarea id="descripcion" rows="3" required placeholder="Descripción corta para el catálogo..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Requisitos (Un item por línea)</label>
+                    <textarea id="requisitos" rows="4" placeholder="• Ser costarricense&#10;• Promedio mayor a 85"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Estado Inicial</label>
+                    <select id="estado">
+                        <option value="Abierta">Abierta</option>
+                        <option value="Cerrada">Cerrada</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>URL de la Imagen</label>
+                    <input type="text" id="imagen" placeholder="https://ejemplo.com/imagen.jpg">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Beca</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/admin-becas.js"></script>
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('modal-beca');
+        const btnNueva = document.getElementById('btn-nueva-beca');
+        const spanClose = document.getElementById('close-modal');
+
+        btnNueva.onclick = function() { 
+            document.getElementById('modal-titulo').innerText = 'Nueva Beca';
+            document.getElementById('beca-id').value = '';
+            document.getElementById('form-beca').reset();
+            modal.style.display = "flex"; 
+        }
+        spanClose.onclick = function() { modal.style.display = "none"; }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
+    </script>
+</body>
+</html>
