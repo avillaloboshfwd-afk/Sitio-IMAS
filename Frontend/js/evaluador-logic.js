@@ -33,7 +33,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         async function cargarSolicitudes(status = 'all') {
             try {
                 const postulaciones = await api.get('postulaciones');
-                const filtered = status === 'all' ? postulaciones : postulaciones.filter(p => p.estado === status);
+                const filtered = status === 'all' 
+                    ? postulaciones 
+                    : postulaciones.filter(p => {
+                        if (status === 'Pendiente') return p.estado === 'Pendiente' || p.estado === 'Apta';
+                        if (status === 'Rechazada') return p.estado === 'Rechazada' || p.estado === 'No apta';
+                        return p.estado === status;
+                    });
                 renderSolicitudes(filtered);
             } catch (error) {
                 console.error("Error al cargar solicitudes:", error);
