@@ -85,20 +85,34 @@
       "role": "postulante"
     },
     {
-      "id": "5432",
-      "nombre": "Andre",
-      "email": "andres@imas.com",
-      "password": "Imas2026?",
-      "role": "evaluador",
-      "fechaRegistro": "2026-02-02T17:02:39.209Z",
-      "status": "active"
-    },
-    {
       "id": "efe0",
       "nombre": "Steven",
       "email": "steven@profe.com",
       "password": "Franchesco12?",
       "role": "postulante"
+    },
+    {
+      "id": "05c3",
+      "nombre": "gau",
+      "email": "gaudysv@gmail.com",
+      "password": "12345*gauS",
+      "role": "postulante"
+    },
+    {
+      "id": "a0c6",
+      "nombre": "Steven Salas",
+      "email": "stevensalas@gmail.com",
+      "password": "31dedicY*",
+      "role": "postulante"
+    },
+    {
+      "id": "6f64",
+      "nombre": "Ingeniería Industrial",
+      "email": "ing@imas.com",
+      "password": "Imas2026?",
+      "role": "evaluador",
+      "fechaRegistro": "2026-02-03T14:20:43.290Z",
+      "status": "active"
     }
   ],
   "becas": [
@@ -158,7 +172,7 @@
       "id": "8",
       "nombre": "Ingeniería Industrial",
       "descripcion": "Beca para estudiantes de Ingeniería Industrial.",
-      "estado": "Cerrada",
+      "estado": "Abierta",
       "imagen": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop",
       "requisitos": ""
     },
@@ -174,22 +188,22 @@
       "nombre": "Gastronomía",
       "descripcion": "Beca para estudios superiores en artes culinarias y gestión de alimentos.",
       "requisitos": "• Pasión por la cocina.\n• Portafolio de platos básicos.",
-      "estado": "Abierta",
-      "imagen": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop"
-    },
-    {
-      "id": "1770051719247",
-      "nombre": "Tayro Arce",
-      "descripcion": "MISANDSAIDBSAUSBFDSOFL",
-      "requisitos": "- Ser de Heredia\n- Disponer 10 horas a la semana",
       "estado": "Cerrada",
-      "imagen": ""
+      "imagen": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop"
     },
     {
       "id": "1770054068401",
       "nombre": "BECA RANDY",
       "descripcion": "nkclsdcnñdskvds",
       "requisitos": "",
+      "estado": "Abierta",
+      "imagen": ""
+    },
+    {
+      "id": "1770066066235",
+      "nombre": "Aguacate",
+      "descripcion": "Para los amantes del aguacate",
+      "requisitos": "Que le guste el aguacate",
       "estado": "Abierta",
       "imagen": ""
     }
@@ -515,6 +529,63 @@
       "motivo": "n{zñj vañsklvn flñvkasnvpjsdpñaskl vfd",
       "estado": "No apta",
       "fechaPostulacion": "2/2/2026, 1:13:18 p. m."
+    },
+    {
+      "id": "1770062274288",
+      "usuarioEmail": "gaudysv@gmail.com",
+      "usuarioNombre": "gau",
+      "datosPersonales": {
+        "nombreCompleto": "Gaudy Sirias Velásquez",
+        "cedula": "604760944",
+        "edad": 23
+      },
+      "informacionAcademica": {
+        "becaId": "1770054068401",
+        "becaNombre": "BECA RANDY",
+        "nivelEducativo": "universitario"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡0",
+        "ingresosNumerico": 0,
+        "personasHogar": 1
+      },
+      "motivo": "Tengo hambre y necesito estudiar",
+      "estado": "Apta",
+      "fechaPostulacion": "2/2/2026, 1:57:54 p. m."
+    },
+    {
+      "id": "1770065918777",
+      "usuarioEmail": "stevensalas@gmail.com",
+      "usuarioNombre": "Steven Salas",
+      "datosPersonales": {
+        "nombreCompleto": "Steven Salas",
+        "cedula": "100000000",
+        "edad": 25
+      },
+      "informacionAcademica": {
+        "becaId": "1770054068401",
+        "becaNombre": "BECA RANDY",
+        "nivelEducativo": "universitario"
+      },
+      "situacionSocioeconomica": {
+        "ingresos": "₡100000",
+        "ingresosNumerico": 100000,
+        "personasHogar": 8
+      },
+      "motivo": "Ayúdenme por favor! tengo hambre",
+      "estado": "Rechazada",
+      "fechaPostulacion": "2/2/2026, 2:58:38 p. m.",
+      "evaluacion": {
+        "puntajes": {
+          "economico": 0,
+          "academico": 0,
+          "social": 0
+        },
+        "puntajeTotal": 0,
+        "observaciones": "Trabaje",
+        "evaluador": "Evaluador Principal",
+        "fechaEvaluacion": "2/2/2026, 3:02:32 p. m."
+      }
     }
   ]
 }
